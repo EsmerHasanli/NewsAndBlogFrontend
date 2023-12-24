@@ -1,0 +1,55 @@
+.LatestNews{
+    max-width:1408px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0MCIgaGVpZ2h0PSI1MDQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxwYXRoIGlkPSJhIiBkPSJNMCAwaDE0NDB2NTA0SDB6Ii8+PC9kZWZzPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PG1hc2sgaWQ9ImIiIGZpbGw9IiNmZmYiPjx1c2UgeGxpbms6aHJlZj0iI2EiLz48L21hc2s+PHVzZSBmaWxsPSIjRjVFNEREIiB4bGluazpocmVmPSIjYSIvPjxlbGxpcHNlIGZpbGw9IiNGNkYwRUMiIG1hc2s9InVybCgjYikiIGN4PSItNTk5LjUiIGN5PSI3MDkiIHJ4PSIxMzA4LjUiIHJ5PSI5NjIiLz48L2c+PC9zdmc+);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px 190px 25px 170px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 150px;
+}
+
+.title{
+    color: rgba(0, 0, 0, 0.95);
+    font-family: "Zilla Slab", Lora, georgia, times, serif;
+    font-size: 24px;
+    font-weight: 700;
+    width: 260px;
+    margin-bottom: 40px;
+}
+
+.newsDescr{
+    margin-bottom: 40px;
+    li{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        span{
+            color: rgba(0, 0, 0, 0.95);
+            font-family: Roboto, HelveticaNeue, sans-serif;
+            font-size :15.008px;
+            font-weight: 400;
+        }
+    }
+}
+
+.icon{
+    fill:red!important;
+    height: 16px!important;
+}
+
+.btn{
+    border-radius:3px;
+    border: none;
+    background-color: rgb(233, 6, 6);
+    padding:15px 82px;
+    
+    color: white;
+    font-family: Roboto, HelveticaNeue, sans-serif;
+    letter-spacing: 1.008px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    font-stretch: 100%;
+}

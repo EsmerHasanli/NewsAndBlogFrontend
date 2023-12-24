@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.swiper {
+  width: 100vw;
+}
+.swiperSlider {
+  height: 75vh!important;
+  width: 25%;
+  line-height: 300px;
+  text-align: center;
+  transition: 1.5s!important;
+  background-position: center;
+  background-repeat:no-repeat;
+  background-size: cover;
+
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  font-size:40px!important;
+  font-weight: 600;
+
+  color: white;
+
+}
+.swiperSlider:hover{
+  scale:1.1;
+}
+
+.swiperSlider::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: -2; 
+}
+
+.avatar{
+  width:80px!important;
+  height:80px!important;
+  position:absolute!important;
+  bottom:50px!important;
+}
+
+.heading{
+  text-align: center;
+  margin-bottom: 20px!important;
+
+  font-family: Oswald, Lora, georgia, times, serif!important;
+  font-size: 36px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.95);
+  letter-spacing: 1px;
+}
+
+.sliders{
+  padding:40px 0;
+}

@@ -1,0 +1,116 @@
+.hero{
+    padding: 42px 0;
+}
+
+.listStyle{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 35px;
+    width: 220px;
+    word-spacing: 2px;
+}
+
+aside{
+padding: 0 20px;
+}
+
+.subheader{
+    color: #e90606;
+    font-family: Roboto Condensed,Arial Narrow,arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 700;
+}
+
+.num{
+    font-family: Roboto,HelveticaNeue,sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-bottom: 4.5px solid #e90606;
+    height:30px;
+}
+
+.news{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+    right: 0;
+    object-fit: cover;
+    object-position: center;
+    img{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+.main{
+    display: flex;
+    width: 100%;
+}
+ .mainLeft{
+    padding: 40px 20px;
+    width: 35%;
+    background-color:rgba(0, 0, 0, 0.9);
+ }
+ .mainRight{
+    width: 75%;
+ }
+
+.mainNewsTitle{
+    font-family:"Zilla Slab", Lora, georgia, times, serif;
+    font-size: 34px;
+    font-weight: 500;
+    color:white;
+    margin:4px 0;
+}
+
+.mainNewsTime{
+    color: rgb(233, 6, 6);
+    font-family: "Roboto Condensed", "Arial Narrow", arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.mainDescr{
+    color: rgb(255, 255, 255);
+    font-family: Roboto, HelveticaNeue, sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    margin: 4px 0;
+}
+
+.cardWrapper{
+    top:600px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 31px;
+}
+
+.card{
+    img{
+        height: 190px;
+        width:285px;
+        object-fit: cover;
+        object-position: center;
+    }
+    span{
+        margin-top: 45px;
+    }
+    p:first-of-type{
+        color: rgb(40, 47, 47);
+        font-family:"Zilla Slab", Lora, georgia, times, serif;
+        font-size: 20px;
+        font-weight :500;
+        width:285px;
+        margin: 38px 0 8px 0;
+    }
+    p:nth-of-type(2){
+        color: rgba(0, 0, 0, 0.95);
+        font-family: "Roboto Condensed", "Arial Narrow", arial, sans-serif;
+        font-size: 14px;
+    }
+}
+

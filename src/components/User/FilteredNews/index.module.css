@@ -1,0 +1,65 @@
+.filteredNews{
+    padding: 40px 0;
+}
+
+.container{
+    max-width: 1228px;
+    margin: 0 auto;
+
+    border-top-color: rgba(0, 0, 0, 0.95);
+    border-top-style: solid;
+    border-top-width: 0.8px;
+
+    padding-top: 25px;
+}
+
+.devider{
+    border-radius: 10px solid black;
+}
+
+
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiperSlide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    width: 284px!important;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .swiperSlide img {
+    width: 284px;
+    height: 190px;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .swiperSlide span{
+    margin-top: 25px;
+    text-align: start;
+    color: rgba(0, 0, 0, 0.95);
+    font-family: "Zilla Slab", Lora, georgia, times, serif;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .title{
+    display: flex;
+    align-items:center;
+    gap: 10px;
+    color: rgba(0, 0, 0, 0.95);
+    font-family: Oswald, Lora, georgia, times, serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: 0.92px;
+    margin-bottom: 25px;
+  }
