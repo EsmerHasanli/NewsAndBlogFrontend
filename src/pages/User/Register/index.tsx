@@ -4,13 +4,7 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import {
-  FormControl,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-} from "@mui/material";
+import { FormControl, IconButton, InputAdornment, InputLabel,  OutlinedInput, } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import style from "./style.module.css";
@@ -18,6 +12,8 @@ import { Link } from "react-router-dom";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { Helmet } from 'react-helmet';
+import {getAllUsers} from '../../../services/api/users';
+import UserRegForm from "../../../components/User/UserForm";
 
 // const defaultTheme = createTheme();
 
@@ -78,11 +74,6 @@ const Register = () => {
     event.preventDefault();
   };
 
-  const handleUserRegistration: any = (e: any) => {
-    e.preventDefault();
-    console.log("user");
-  };
-
   const handlePublisherRegistration: any = (e: any) => {
     e.preventDefault();
     console.log("publisher");
@@ -90,9 +81,9 @@ const Register = () => {
 
   return (
     <>
-    {/* <Helmet>
+    <Helmet>
       <title>TIME | Register</title>
-    </Helmet> */}
+    </Helmet>
       {/* <ThemeProvider theme={defaultTheme}> */}
         <Box
           sx={{
@@ -133,76 +124,7 @@ const Register = () => {
           </Tabs>
 
           <TabPanel value={value} index="one">
-            <Box
-              component="form"
-              onSubmit={handleUserRegistration}
-              noValidate
-              sx={{ mt: 1 }}
-            >
-              <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="fullName"
-                  label="Full Name"
-                  name="fullName"
-                  autoComplete="fullName"
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="username"
-                  label="Username"
-                  name="username"
-                  autoComplete="Username"
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </FormControl>
-              <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <OutlinedInput
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  id="password"
-                  autoComplete="current-password"
-                  type={showPassword ? "text" : "password"}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2, width: "100%" }}
-                style={{ backgroundColor: "rgb(233,6,6)" }}
-              >
-                Sign In
-              </Button>
-              <Copyright sx={{ mt: 5 }} />
-            </Box>
+<UserRegForm/>
           </TabPanel>
 
           <TabPanel value={value} index="two">

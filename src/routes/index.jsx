@@ -6,9 +6,9 @@ import PublisherDetail from "../pages/User/PublisherDetail";
 import Register from "../pages/User/Register";
 import UserDetail from "../pages/User/UserDetail";
 import NotFound from "../pages/User/NotFound"
-import AdminRoot from "../pages/Admin/AdminRoot"
-import Publishers from "../pages/Admin/Publishers";
-import AdminLogin from "../pages/Admin/Login"
+import AdminRoot from "../pages/Admin/AdminRoot.tsx";
+import AdminLogin from '../pages/Admin/Login';
+import Publishers from '../pages/Admin/Publishers';
 
 export const ROUTES = [
   {

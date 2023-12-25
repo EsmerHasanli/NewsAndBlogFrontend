@@ -11,7 +11,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Avatar, CardActionArea } from '@mui/material';
-import {getAllUsers} from '../../../services/api/users';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -20,21 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
-const UserDetail = () => {
-  const [users, setUsers]=useState([])
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getAllUsers();
-        setUsers(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  
-    fetchData();
-  }, [getAllUsers]);
-  
+const UserDetail = () => {  
   return (
     <>
     <Helmet>
