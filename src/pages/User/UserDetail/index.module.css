@@ -44,7 +44,6 @@ padding: 0 20px;
     }
 }
 
-
 .main{
     display: flex;
     width: 100%;
@@ -85,14 +84,15 @@ padding: 0 20px;
     top:600px;
     margin-top: 25px;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 31px;
 }
 
 .card{
     img{
         height: 190px;
-        width:303px;
+        width:285px;
         object-fit: cover;
         object-position: center;
     }
@@ -104,7 +104,7 @@ padding: 0 20px;
         font-family:"Zilla Slab", Lora, georgia, times, serif;
         font-size: 20px;
         font-weight :500;
-        width:303px;
+        width:285px;
         margin: 38px 0 8px 0;
     }
     p:nth-of-type(2){

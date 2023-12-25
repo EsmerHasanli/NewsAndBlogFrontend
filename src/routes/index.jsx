@@ -3,10 +3,12 @@ import CreateNews from "../pages/User/CreateNews";
 import Login from "../pages/User/Login";
 import News from "../pages/User/News";
 import PublisherDetail from "../pages/User/PublisherDetail";
-import Publishers from "../pages/User/Publishers";
 import Register from "../pages/User/Register";
-import Subscriptions from "../pages/User/Subscriptions";
 import UserDetail from "../pages/User/UserDetail";
+import NotFound from "../pages/User/NotFound"
+import AdminRoot from "../pages/Admin/AdminRoot"
+import Publishers from "../pages/Admin/Publishers";
+import AdminLogin from "../pages/Admin/Login"
 
 export const ROUTES = [
   {
@@ -30,35 +32,31 @@ export const ROUTES = [
         element: <CreateNews />,
       },
       {
-        path:'users',
+        path:'publisher',
         element:<PublisherDetail/>
       },
       {
-        path: "publiahers",
-        element: <Publishers />,
-      },
-      {
-        path: "subscriptions",
-        element: <Subscriptions />,
-      },
-      {
-        path: "user-details",
+        path: "user",
         element: <UserDetail />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       }
     ],
   },
-  // {
-  //   path: "/admin",
-  //   element: <AdminRoot />,
-  //   children: [
-  //       {
-  //           index: true,
-  //           element: <AdminLogin/>
-  //       },
-  //       {
-  //         path: 'users',
-  //         element: <UsersPage/>
-  //     }
-  //   ]
-  // },
+  {
+    path: "/admin",
+    element: <AdminRoot />,
+    children: [
+        {
+            index: true,
+            element: <AdminLogin/>
+        },
+        {
+          path: "publishers",
+          element: <Publishers />,
+        },
+    ]
+  },
 ];

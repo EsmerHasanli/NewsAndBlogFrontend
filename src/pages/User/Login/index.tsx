@@ -98,7 +98,6 @@ const Login = () => {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
-                    autoFocus
                   />
                 </FormControl>
                 <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">

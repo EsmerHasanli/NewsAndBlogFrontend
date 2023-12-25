@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { Helmet } from 'react-helmet';
 
@@ -5,9 +6,11 @@ import { Helmet } from 'react-helmet';
 const Publishers = () => {
   return (
     <>
-    {/* <Helmet>
+    <Helmet>
       <title>Publishers</title>
-    </Helmet> */}
+    </Helmet>
+    <Container>
+    </Container>
     </>
   )
 }

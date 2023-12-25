@@ -10,6 +10,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Typography,
 } from "@mui/material";
 import { styled, Box } from "@mui/system";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
@@ -22,6 +23,13 @@ import DirectionsIcon from "@mui/icons-material/Directions";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link, useLocation } from "react-router-dom";
 import Select from 'react-select'
+import CreatableSelect from 'react-select/creatable';
+import TagIcon from '@mui/icons-material/Tag';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import LoginIcon from '@mui/icons-material/Login';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -38,12 +46,6 @@ const customStyles = {
     width: '300px', 
   }),
 };
-
-const options = [
-  { value: '1', label: 'Sport' },
-  { value: '2', label: 'Development' },
-  { value: '3', label: 'All' }
-]
 
 const Navbar = () => {
   const location = useLocation();
@@ -72,6 +74,21 @@ const Navbar = () => {
       setState({ ...state, [anchor]: open });
     };
 
+    const [options, setOptions] = React.useState([
+      { value: '1', label: 'Sport' },
+      { value: '2', label: 'Development' },
+      { value: '3', label: 'All' }
+    ]);
+
+    const handleCreateOption = (inputValue) => {
+      const newOption = {
+        value: inputValue.toLowerCase(),
+        label: inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
+      };
+  
+      setOptions([...options, newOption]);
+    };
+
   return (
     <>
       <header className={style.navbar}>
@@ -86,7 +103,7 @@ const Navbar = () => {
         </div>
 
         <div>
-          <h1 className={style.heading}> TIME </h1>
+          <h1 className={style.heading}> <Link className={style.heading} to="/">TIME</Link> </h1>
         </div>
 
         <div>
@@ -122,31 +139,123 @@ const Navbar = () => {
                     onKeyDown={toggleDrawer(anchor, false)}
                   >
                     <List>
-                      {["Inbox", "Starred", "Send email", "Drafts"].map(
-                        (text, index) => (
-                          <ListItem key={text} disablePadding>
-                            <ListItemButton>
-                              <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                              </ListItemIcon>
-                              <ListItemText primary={text} />
-                            </ListItemButton>
-                          </ListItem>
-                        )
-                      )}
+                      <ListItem disablePadding>
+                        <ListItemText style={{padding:'0 20px'}}>Pages</ListItemText>
+                      </ListItem>
+                      <Link style={{textDecoration:'none', color:'black'}} to='/signup'>
+                        <ListItem disablePadding>
+                          <ListItemButton>
+                            <ListItemIcon>
+                              <PersonAddIcon /> 
+                            </ListItemIcon>
+                            <ListItemText>Sign Up</ListItemText>
+                          </ListItemButton>
+                        </ListItem>
+                      </Link>
+                      <Link style={{textDecoration:'none', color:'black'}} to='/signin'>
+                        <ListItem disablePadding>
+                          <ListItemButton>
+                            <ListItemIcon>
+                              <LoginIcon /> 
+                            </ListItemIcon>
+                            <ListItemText>Sign In</ListItemText>
+                          </ListItemButton>
+                        </ListItem>
+                      </Link>
+                      <Link style={{textDecoration:'none', color:'black'}} to='/'>
+                        <ListItem disablePadding>
+                          <ListItemButton>
+                            <ListItemIcon>
+                              <NewspaperIcon /> 
+                            </ListItemIcon>
+                            <ListItemText>News</ListItemText>
+                          </ListItemButton>
+                        </ListItem>
+                      </Link>
+                      <Link style={{textDecoration:'none', color:'black'}} to='createnews'>
+                        <ListItem disablePadding>
+                          <ListItemButton>
+                            <ListItemIcon>
+                              <EditNoteIcon /> 
+                            </ListItemIcon>
+                            <ListItemText>Create News</ListItemText>
+                          </ListItemButton>
+                        </ListItem>
+                      </Link>
+                      <Link style={{textDecoration:'none', color:'black'}} to='/publisher'>
+                        <ListItem disablePadding>
+                          <ListItemButton>
+                            <ListItemIcon>
+                              <InboxIcon /> 
+                            </ListItemIcon>
+                            <ListItemText>Publisher</ListItemText>
+                          </ListItemButton>
+                        </ListItem>
+                      </Link>
+                      <Link style={{textDecoration:'none', color:'black'}} to='user'>
+                        <ListItem disablePadding>
+                          <ListItemButton>
+                            <ListItemIcon>
+                              <InboxIcon /> 
+                            </ListItemIcon>
+                            <ListItemText>User</ListItemText>
+                          </ListItemButton>
+                        </ListItem>
+                      </Link>
+                      <ListItem disablePadding>
+                          <ListItemButton>
+                            <ListItemIcon>
+                              <ExitToAppIcon /> 
+                            </ListItemIcon>
+                            <ListItemText>Logout</ListItemText>
+                          </ListItemButton>
+                        </ListItem>
                     </List>
                     <Divider />
                     <List>
-                      {["All mail", "Trash", "Spam"].map((text, index) => (
-                        <ListItem key={text} disablePadding>
+                      <ListItem disablePadding>
+                          <ListItemText style={{padding:'0 20px'}}>Tags</ListItemText>
+                        </ListItem>
+                        <ListItem disablePadding>
                           <ListItemButton>
                             <ListItemIcon>
-                              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                              <TagIcon />
                             </ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemText>
+                              All
+                            </ListItemText>
                           </ListItemButton>
                         </ListItem>
-                      ))}
+                        <ListItem disablePadding>
+                          <ListItemButton>
+                            <ListItemIcon>
+                              <TagIcon />
+                            </ListItemIcon>
+                            <ListItemText>
+                              Latest
+                            </ListItemText>
+                          </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                          <ListItemButton>
+                            <ListItemIcon>
+                              <TagIcon />
+                            </ListItemIcon>
+                            <ListItemText>
+                              Development
+                            </ListItemText>
+                          </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                          <ListItemButton>
+                            <ListItemIcon>
+                              <TagIcon />
+                            </ListItemIcon>
+                            <ListItemText>
+                              Sport
+                            </ListItemText>
+                          </ListItemButton>
+                        </ListItem>
                     </List>
                   </Box>
                 </Drawer>
@@ -165,7 +274,7 @@ const Navbar = () => {
           <div>
             {showInput && (
               <div style={{ display: "flex" }}>
-              <Select  styles={customStyles} isMulti options={options} />
+              <CreatableSelect styles={customStyles} isMulti options={options}  onCreateOption={handleCreateOption} />
                   <IconButton
                     onClick={() => setShowInput(!showInput)}
                     aria-label="search"

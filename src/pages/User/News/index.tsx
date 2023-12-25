@@ -8,9 +8,9 @@ import { Helmet } from 'react-helmet';
 const News = () => {
   return (
     <>
-      {/* <Helmet>
-        <title>TIME | News</title>
-      </Helmet> */}
+      <Helmet>
+        <title>TIME | Latest News & Blogs</title>
+      </Helmet>
       <Hero/>
       <PublishersSliders/>
       <LatestNews/>
