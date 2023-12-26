@@ -11,18 +11,13 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import {
-  FormControl,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-} from "@mui/material";
+import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import style from "./style.module.css"
 import { Link } from "react-router-dom";
 import { Helmet } from 'react-helmet';
+// import { useDispatch } from 'react-redux'
 
 // const defaultTheme = createTheme();
 
@@ -47,6 +42,7 @@ function Copyright(props: any) {
 }
 
 const Login = () => {
+  // const dispatch = useDispatch()
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
