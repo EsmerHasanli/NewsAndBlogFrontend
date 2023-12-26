@@ -9,8 +9,8 @@ const usersSlice = createSlice({
   initialState,
   reducers: {
     sign_in: (state, action) => {
-      const { email, password } = action.payload;
-      state.user = { email, password };
+      const { id } = action.payload;
+      state.user = { id };
       localStorage.setItem("user", JSON.stringify(state.user));
     },
     sign_out: (state, action) => {
