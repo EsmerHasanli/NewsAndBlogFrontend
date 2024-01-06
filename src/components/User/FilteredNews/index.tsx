@@ -1,292 +1,72 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./index.module.css";
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
+import {getAllNews} from '../../../services/api/News'
+import { Link } from "react-router-dom";
 
 const FilteredNews = () => {
+  const [news, setNews] = useState();
+  
+  useEffect(()=>{
+    async function fetchData(){
+        const data = await getAllNews()
+        setNews(data);
+    }
+    fetchData()
+  },[])
+
+  useEffect(()=>{
+console.log(news);
+  },[news])
+
   return (
     <>
-        <section className={style.filteredNews}>
+      <section className={style.filteredNews}>
         <div className={style.container}>
-            <div className={style.devider}></div>
+          <div className={style.devider}></div>
 
-            <h3 className={style.title}>
-                <span>FUTURE OF WORK</span> <ArrowForwardIosIcon />
-            </h3>
+          <h3 className={style.title}>
+            <span>NEWS</span> <ArrowForwardIosIcon />
+          </h3>
 
-            <Swiper
+          <Swiper
             slidesPerView={1}
             spaceBetween={10}
             breakpoints={{
-                640: {
+              640: {
                 slidesPerView: 2,
                 spaceBetween: 20,
-                },
-                768: {
+              },
+              768: {
                 slidesPerView: 4,
                 spaceBetween: 40,
-                },
-                1024: {
+              },
+              1024: {
                 slidesPerView: 5,
                 spaceBetween: 50,
-                },
+              },
             }}
             className={style.swiper}
-            >
-            <SwiperSlide className={style.swiperSlide} >
-                <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-                <span>
-                    Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-                </span>
-            </SwiperSlide>
+          >
+            {
+               news && news.data!.map((obj: object | string | number)=>{
+                    return(
+                    <SwiperSlide key={obj._id} className={style.swiperSlide}>
+                        <img src={obj.image} alt={obj.title} />
+                        <Link to={`/news/${obj._id}`}>
+                        <span>{obj.title}</span>
+                        </Link>
+                    </SwiperSlide>
+                    )
+                })
+            }
 
-            <SwiperSlide className={style.swiperSlide} >
-                <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-                <span>
-                    Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-                </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-                <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-                <span>
-                    Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-                </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-                <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-                <span>
-                    Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-                </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-                <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-                <span>
-                    Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-                </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-                <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-                <span>
-                    Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-                </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-                <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-                <span>
-                    Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-                </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-                <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-                <span>
-                    Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-                </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-                <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-                <span>
-                    Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-                </span>
-            </SwiperSlide>
-            </Swiper>
+          </Swiper>
         </div>
-        </section>
-
-        <section className={style.filteredNews}>
-        <div className={style.container}>
-        <div className={style.devider}></div>
-
-        <h3 className={style.title}>
-            <span>FUTURE OF WORK</span> <ArrowForwardIosIcon />
-        </h3>
-
-        <Swiper
-            slidesPerView={1}
-            spaceBetween={10}
-            breakpoints={{
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-            },
-            768: {
-                slidesPerView: 4,
-                spaceBetween: 40,
-            },
-            1024: {
-                slidesPerView: 5,
-                spaceBetween: 50,
-            },
-            }}
-            className={style.swiper}
-        >
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-        </Swiper>
-        </div>
-        </section>
-
-
-        <section className={style.filteredNews}>
-        <div className={style.container}>
-        <div className={style.devider}></div>
-
-        <h3 className={style.title}>
-            <span>FUTURE OF WORK</span> <ArrowForwardIosIcon />
-        </h3>
-
-        <Swiper
-            slidesPerView={1}
-            spaceBetween={10}
-            breakpoints={{
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-            },
-            768: {
-                slidesPerView: 4,
-                spaceBetween: 40,
-            },
-            1024: {
-                slidesPerView: 5,
-                spaceBetween: 50,
-            },
-            }}
-            className={style.swiper}
-        >
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-
-            <SwiperSlide className={style.swiperSlide} >
-            <img src="https://images.pexels.com/photos/19562112/pexels-photo-19562112/free-photo-of-the-ceiling-of-a-building-with-a-large-skylight.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-            <span>
-                Best Dyson Vacuums: 9 Picks for Every Cleaning Concern
-            </span>
-            </SwiperSlide>
-        </Swiper>
-        </div>
-        </section>
+      </section>
     </>
   );
 };

@@ -18,11 +18,12 @@ const PublisherSchema = z.object({
     name: z.string().optional(),
     description: z.string().optional(),
     joinedDate : z.date(),
+    isVerified: z.boolean(),
   });
 
 const PublisherRegForm = () => {
   const [showPassword, setShowPassword] = React.useState(false);
-  const [formData, setFormData] = React.useState({ username: "", password: "", email: "", profileImg:"",  backgroundImg: "", name:"", description:"", joinedDate:Date.now() });
+  const [formData, setFormData] = React.useState({ username: "", password: "", email: "", profileImg:"",  backgroundImg: "", name:"", description:"", joinedDate:new Date(), isVerified:false });
   
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -43,7 +44,7 @@ const PublisherRegForm = () => {
       const validatedData = PublisherSchema.parse(formData);
       console.log(validatedData);
       await postPublisher(validatedData)
-      setFormData({username: "", password: "", email: "", profileImg:"", backgroundImg: "", name:"", description:"", joinedDate:0})
+      setFormData({username: "", password: "", email: "", profileImg:"", backgroundImg: "", name:"", description:"", joinedDate: new Date(),isVerified: false})
     } catch (error) {
       if (error instanceof ZodError) {
         console.error("Validation Error:", error.errors);

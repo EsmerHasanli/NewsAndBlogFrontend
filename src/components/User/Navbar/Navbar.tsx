@@ -1,17 +1,6 @@
 import React from "react";
 import style from "./style.module.css";
-import {
-  IconButton,
-  Drawer,
-  Button,
-  List,
-  Divider,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Typography,
-} from "@mui/material";
+import { IconButton, Drawer, Button, List, Divider, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography,} from "@mui/material";
 import { styled, Box } from "@mui/system";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
@@ -30,7 +19,9 @@ import LoginIcon from '@mui/icons-material/Login';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import EditNoteIcon from '@mui/icons-material/EditNote';
-
+import { useDispatch } from "react-redux";
+import { user_sign_out, publisher_sign_out} from "../../../redux/userSlice.js"
+import Swal from "sweetalert2";
 type Anchor = "top" | "left" | "bottom" | "right";
 
 const Container = styled(Box)({
@@ -59,7 +50,7 @@ const Navbar = () => {
   });
 
   const [showInput, setShowInput] = React.useState(false);
-
+  const dispatch = useDispatch()
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
     (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -207,7 +198,14 @@ const Navbar = () => {
                             <ListItemIcon>
                               <ExitToAppIcon /> 
                             </ListItemIcon>
-                            <ListItemText>Logout</ListItemText>
+                            <ListItemText onClick={()=>{
+                              if(localStorage.getItem("user")){
+                                dispatch(user_sign_out)
+                              }else{
+                                dispatch(publisher_sign_out);
+                              }
+                              Swal.fire("You have been signed out");
+                            }}>Logout</ListItemText>
                           </ListItemButton>
                         </ListItem>
                     </List>

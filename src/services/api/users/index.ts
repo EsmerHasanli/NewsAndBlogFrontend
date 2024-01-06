@@ -44,3 +44,21 @@ export const deleteUser = async (id) => {
     });
     return deletedUser; 
 };
+
+export const loginUser = async(currentUser: {email: string, password: string}) =>{
+  // : Promise<{status: number,message: string, token?: string} | undefined>
+  
+    let result = undefined;
+     await axios.post(`${BASE_URL}/users/login`, currentUser)
+     .then((res: AxiosResponse)=>{
+         result = res.data;
+     });
+     if (result) {
+         return result;
+     }
+     else{
+         return undefined;
+     }
+  }
+
+  

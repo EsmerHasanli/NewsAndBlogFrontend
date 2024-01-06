@@ -9,7 +9,7 @@ import NotFound from "../pages/User/NotFound"
 import AdminRoot from "../pages/Admin/AdminRoot.tsx";
 import AdminLogin from '../pages/Admin/Login';
 import Publishers from '../pages/Admin/Publishers';
-
+import NewsDetails from '../pages/User/NewsDetails'
 export const ROUTES = [
   {
     path: "/",
@@ -32,12 +32,16 @@ export const ROUTES = [
         element: <CreateNews />,
       },
       {
-        path:'publisher',
+        path:'publisher/:id',
         element:<PublisherDetail/>
       },
       {
         path: "user",
         element: <UserDetail />,
+      },
+      {
+        path: "news/:id",
+        element: <NewsDetails/>
       },
       {
         path: "*",

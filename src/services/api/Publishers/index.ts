@@ -27,3 +27,19 @@ export const postPublisher = async (payload) => {
   });
   return newPublisher;
 };
+
+export const loginPublisher = async(currentPublisher: {email: string, password: string}) =>{
+// : Promise<{status: number,message: string, token?: string} | undefined>
+
+  let result = undefined;
+   await axios.post(`${BASE_URL}/publishers/login`, currentPublisher)
+   .then((res: AxiosResponse)=>{
+       result = res.data;
+   });
+   if (result) {
+       return result;
+   }
+   else{
+       return undefined;
+   }
+}

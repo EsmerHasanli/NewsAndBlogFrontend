@@ -7,21 +7,14 @@ import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } fr
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { getAllUsers, postUser } from '../../../services/api/users';
-import { z, ZodError } from "zod";
-
-const UserSchema = z.object({
-  fullName: z.string().min(3).max(50),
-  username: z.string().min(3).max(20),
-  email: z.string().email(),
-  password: z.string().min(6),
-  isAdmin: z.boolean()
-});
+import {  ZodError } from "zod";
+import UserSchema from "../../../validation/user.shema";
 
 
 const UserRegForm = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [users, setUsers] = React.useState([]);
-  const [formData, setFormData] = React.useState({ fullName: "", username: "", email: "", password: "", isAdmin: false });
+  const [formData, setFormData] = React.useState({ fullName: "", username: "", email: "", password: "", isAdmin: false, isVerified: false});
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -33,10 +26,11 @@ const UserRegForm = () => {
     e.preventDefault();
     try {
       const validatedData = UserSchema.parse(formData);
-      console.log(validatedData);
-      await postUser(validatedData)
-      setFormData({fullName: "", username: "", email: "", password: "", isAdmin: false})
+      await postUser(validatedData);
+      setFormData({ fullName: "", username: "", email: "", password: "", isAdmin: false, isVerified: false });
+      console.log("User registration successful", validatedData);
     } catch (error) {
+      console.error("User registration error:", error);
       if (error instanceof ZodError) {
         console.error("Validation Error:", error.errors);
       }
