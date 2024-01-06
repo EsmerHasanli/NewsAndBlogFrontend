@@ -42,7 +42,9 @@ const CreateNews = () => {
       <Container sx={{ marginTop: "50px", marginBottom: "50px" }}>
         <div className={style.dFlex}>
           <CreatableSelect styles={customStyles} isMulti options={options}  onCreateOption={handleCreateOption} />
-          <Button variant="contained" color="error"  onClick={() => setPost([...post, markdown])}> add post </Button> 
+          <Button variant="contained" color="error"  onClick={() => {
+            setPost([...post, markdown])
+          }}> add post </Button> 
         </div>
         <MarkdownEditor
           value={markdown}
