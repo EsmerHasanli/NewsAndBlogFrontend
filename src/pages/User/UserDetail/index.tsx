@@ -11,6 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Avatar, CardActionArea } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -20,6 +21,13 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 const UserDetail = () => {  
+  const navigate = useNavigate();
+  useEffect(()=>{
+    if(!localStorage.getItem('user')){
+        navigate('/')
+    }
+},[localStorage.getItem('user')])
+
   return (
     <>
     <Helmet>

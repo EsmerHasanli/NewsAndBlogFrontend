@@ -9,6 +9,7 @@ import style from './index.module.css';
 import { postNews } from '../../../services/api/News';
 import { useFormik } from 'formik';
 import newsSchema from '../../../validation/newsSchema';
+import { useNavigate } from "react-router-dom";
 
 const CreateNews = () => {
   const [options, setOptions] = React.useState([
@@ -54,6 +55,13 @@ const CreateNews = () => {
       width: '300px',
     }),
   };
+
+  const navigate = useNavigate();
+  useEffect(()=>{
+    if(!localStorage.getItem('publisher')){
+        navigate('/')
+    }
+},[localStorage.getItem('publisher')])
 
   return (
     <>

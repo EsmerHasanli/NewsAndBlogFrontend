@@ -10,7 +10,7 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import DirectionsIcon from "@mui/icons-material/Directions";
 import CloseIcon from "@mui/icons-material/Close";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Select from 'react-select'
 import CreatableSelect from 'react-select/creatable';
 import TagIcon from '@mui/icons-material/Tag';
@@ -39,6 +39,7 @@ const customStyles = {
 };
 
 const Navbar = () => {
+  const publisherId = localStorage.getItem("publisher") ? JSON.parse(localStorage.getItem("publisher")).id : null
   const location = useLocation();
   const path = location.pathname;
 
@@ -99,10 +100,7 @@ const Navbar = () => {
 
         <div>
           <ul className={style.rightbar}>
-            <li className={style.a}> SIGN IN </li>
-            <li>
-              <button className={style.b}>SUBSCRIBE</button>
-            </li>
+            <Link to='/signin' className={style.a}> SIGN IN </Link>
           </ul>
         </div>
       </header>
@@ -163,36 +161,46 @@ const Navbar = () => {
                           </ListItemButton>
                         </ListItem>
                       </Link>
-                      <Link style={{textDecoration:'none', color:'black'}} to='createnews'>
-                        <ListItem disablePadding>
-                          <ListItemButton>
-                            <ListItemIcon>
-                              <EditNoteIcon /> 
-                            </ListItemIcon>
-                            <ListItemText>Create News</ListItemText>
-                          </ListItemButton>
-                        </ListItem>
-                      </Link>
-                      <Link style={{textDecoration:'none', color:'black'}} to='/publisher'>
-                        <ListItem disablePadding>
-                          <ListItemButton>
-                            <ListItemIcon>
-                              <InboxIcon /> 
-                            </ListItemIcon>
-                            <ListItemText>Publisher</ListItemText>
-                          </ListItemButton>
-                        </ListItem>
-                      </Link>
-                      <Link style={{textDecoration:'none', color:'black'}} to='user'>
-                        <ListItem disablePadding>
-                          <ListItemButton>
-                            <ListItemIcon>
-                              <InboxIcon /> 
-                            </ListItemIcon>
-                            <ListItemText>User</ListItemText>
-                          </ListItemButton>
-                        </ListItem>
-                      </Link>
+                      {
+                        localStorage.getItem("publisher") ? 
+                        <>
+                          <Link style={{textDecoration:'none', color:'black'}} to='createnews'>
+                            <ListItem disablePadding>
+                              <ListItemButton>
+                                <ListItemIcon>
+                                  <EditNoteIcon /> 
+                                </ListItemIcon>
+                                <ListItemText>Create News</ListItemText>
+                              </ListItemButton>
+                            </ListItem>
+                          </Link>
+                          
+                          <Link style={{textDecoration:'none', color:'black'}}to={`/publisher/${publisherId}`}>
+                            <ListItem disablePadding>
+                              <ListItemButton>
+                                <ListItemIcon>
+                                  <InboxIcon /> 
+                                </ListItemIcon>
+                                <ListItemText>Publisher</ListItemText>
+                              </ListItemButton>
+                            </ListItem>
+                          </Link>
+                        </>
+                        : null
+                      }
+                      {
+                        localStorage.getItem("user") ? 
+                          <Link style={{textDecoration:'none', color:'black'}} to='user'>
+                            <ListItem disablePadding>
+                              <ListItemButton>
+                                <ListItemIcon>
+                                  <InboxIcon /> 
+                                </ListItemIcon>
+                                <ListItemText>User</ListItemText>
+                              </ListItemButton>
+                            </ListItem>
+                          </Link> : null
+                      }
                       <ListItem disablePadding>
                           <ListItemButton>
                             <ListItemIcon>
@@ -201,10 +209,15 @@ const Navbar = () => {
                             <ListItemText onClick={()=>{
                               if(localStorage.getItem("user")){
                                 dispatch(user_sign_out)
-                              }else{
-                                dispatch(publisher_sign_out);
+                                Swal.fire("You have been signed out");
                               }
-                              Swal.fire("You have been signed out");
+                              else if(localStorage.getItem("publisher")){
+                                dispatch(publisher_sign_out);
+                                Swal.fire("You have been signed out");
+                              }
+                              else{
+                                Swal.fire("You have not been logged in yet!");
+                              }
                             }}>Logout</ListItemText>
                           </ListItemButton>
                         </ListItem>

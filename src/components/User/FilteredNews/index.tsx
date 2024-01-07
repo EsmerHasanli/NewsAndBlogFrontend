@@ -52,11 +52,11 @@ console.log(news);
             className={style.swiper}
           >
             {
-               news && news.data!.map((obj: object | string | number)=>{
+               news && news.data && news.data!.map((obj: object | string | number)=>{
                     return(
                     <SwiperSlide key={obj._id} className={style.swiperSlide}>
                         <img src={obj.image} alt={obj.title} />
-                        <Link to={`/news/${obj._id}`}>
+                        <Link style={{textDecoration:'none'}} to={`/news/${obj._id}`}>
                         <span>{obj.title}</span>
                         </Link>
                     </SwiperSlide>

@@ -6,25 +6,31 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getAllPublishers } from '../../../services/api/Publishers';
 import { object } from 'zod';
 
 
 const PublisherDetail = () => {
-    const { _id } = useParams();
+    const { id } = useParams();
     const [publisher, setPublisher] = useState();
+    const navigate = useNavigate()
     useEffect(()=>{
         async function findedPublisher(){
-            console.log(_id);
+            console.log(id);
             const allPub = await getAllPublishers();
-            const findedPublisher = allPub.data.find(x => x._id == _id)
+            const findedPublisher = allPub.data.find(x => x.id == id)
 
             setPublisher(findedPublisher);
         }
         findedPublisher()
-    },[_id])
+    },[id])
 
+    useEffect(()=>{
+        if(!localStorage.getItem('publisher')){
+            navigate('/')
+        }
+    },[localStorage.getItem('publisher')])
   return (
     <>
     {
