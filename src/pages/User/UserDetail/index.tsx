@@ -11,27 +11,31 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Avatar, CardActionArea } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getUserByID } from '../../../services/api/users';
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
 const UserDetail = () => {  
+  const { id } = useParams();
+  const [user, setUser] = useState();
   const navigate = useNavigate();
-  useEffect(()=>{
-    if(!localStorage.getItem('user')){
-        navigate('/')
-    }
-},[localStorage.getItem('user')])
+
+   useEffect(()=>{
+      if(!localStorage.getItem('user')){
+          navigate('/');
+      }
+
+      async function findUser(){
+        const findedUser = await getUserByID(id);
+        setUser(findedUser);
+      }
+
+      findUser();
+    },[])
 
   return (
     <>
     <Helmet>
-      <title>TIME | User's name</title>
+      {/* <title>TIME | {user?.fullName}</title> */}
     </Helmet>
     <section className={style.hero}>
         <div style={{maxWidth:'1300px', margin:'0 auto'}}>
@@ -41,11 +45,11 @@ const UserDetail = () => {
                 <CardMedia
                     style={{height:'250px', objectFit: 'cover', objectPosition:'center', borderRadius:'5px'}}
                     component="img"
-                    image="https://images.pexels.com/photos/13925850/pexels-photo-13925850.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                    image={user?.profileImg}
                     alt="user"
                   />
-                <Typography style={{marginTop:'20px'}}>Full Name</Typography>   
-                <Typography style={{marginTop:'5px'}}>username</Typography>                     
+                <Typography style={{marginTop:'20px'}}>{user?.fullName}</Typography>   
+                <Typography style={{marginTop:'5px'}}>{user?.username}</Typography>                     
               </aside>
             </Grid>
 

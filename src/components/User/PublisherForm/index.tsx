@@ -23,7 +23,7 @@ const PublisherSchema = z.object({
 
 const PublisherRegForm = () => {
   const [showPassword, setShowPassword] = React.useState(false);
-  const [formData, setFormData] = React.useState({ username: "", password: "", email: "", profileImg:"",  backgroundImg: "", name:"", description:"", joinedDate:new Date(), isVerified:false });
+  const [formData, setFormData] = React.useState({ username: "", password: "", email: "", profileImg:"https://i1.sndcdn.com/avatars-ZP5FpaishPSd1mGT-UCA3yw-t500x500.jpg",  backgroundImg: "https://wallpaperswide.com/download/white_layers_abstract-wallpaper-3360x1050.jpg", name:"", description:"", joinedDate:new Date(), isVerified:false });
   
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 

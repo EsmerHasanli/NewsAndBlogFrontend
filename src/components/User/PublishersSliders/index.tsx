@@ -5,6 +5,7 @@ import "swiper/css";
 import { Avatar, Typography } from '@mui/material';
 import { getAllPublishers } from '../../../services/api/Publishers';
 import { Link } from 'react-router-dom';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules'
 
 const PublishersSliders = () => {
   const [publishers, setPublishers] = React.useState()
@@ -18,7 +19,8 @@ const PublishersSliders = () => {
   return (
     <section className={style.sliders}>
       <Typography className={style.heading} variant='h2' component="h1">Publishers</Typography>
-      <Swiper watchSlidesProgress={true} slidesPerView={4} className={style.swiper}>
+      <Swiper  watchSlidesProgress={true} slidesPerView={4} className={style.swiper}>
+
         {
           publishers && publishers.data.map((obj:any)=>{
             return(

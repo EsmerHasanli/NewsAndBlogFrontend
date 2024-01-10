@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getAllPublishers } from '../../../services/api/Publishers';
+import { getAllPublishers, getPublisherByID } from '../../../services/api/Publishers';
 import { object } from 'zod';
 
 
@@ -18,38 +18,32 @@ const PublisherDetail = () => {
     useEffect(()=>{
         async function findedPublisher(){
             console.log(id);
-            const allPub = await getAllPublishers();
-            const findedPublisher = allPub.data.find(x => x.id == id)
+            const findedPublisher = await getPublisherByID(id);
 
             setPublisher(findedPublisher);
         }
         findedPublisher()
     },[id])
 
-    useEffect(()=>{
-        if(!localStorage.getItem('publisher')){
-            navigate('/')
-        }
-    },[localStorage.getItem('publisher')])
   return (
     <>
     {
         publisher && 
         <>
             <Helmet>
-            <title>Publisher's Name</title>
+            <title>TIME | {publisher?.name}</title>
             </Helmet>
-            <div style={{ backgroundImage: 'url(https://yt3.googleusercontent.com/BpYg6806jFRIHlZQZHO01f95tu9Pl5cOzYojm4ZsXvQSyEjVtsNe0tc3CRDsYp7amTn4a846nTo=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj)', width: '100%',  height: '300px',  backgroundSize: 'cover',  backgroundPosition:'center', backgroundRepeat:'no-repeat' }}></div>
+            <div style={{ backgroundImage: `url(${publisher?.backgroundImg})`, width: '100%',  height: '300px',  backgroundSize: 'cover',  backgroundPosition:'center', backgroundRepeat:'no-repeat' }}></div>
             <Container style={{marginTop:'25px', display:'flex', gap:'25px'}}>
             <div>
-                <Avatar style={{ width:'160px', height:'160px'}} src='https://yt3.googleusercontent.com/s4RQ249xQxpc4UMC1synhKX5qvjBgc2VpT08e-6EVsLLE-MMLmVOiSicnGERgxBQrbpIe5up=s176-c-k-c0x00ffffff-no-rj'></Avatar>
+                <Avatar style={{ width:'160px', height:'160px'}} src={publisher?.profileImg}></Avatar>
             </div>
             <div>
                 <h1 className={style.heading}>
-                { publisher.name}
+                {publisher?.name}
                 </h1>
-                <p className={style.info}>@chillbeatphonk ‧ 98.4K subscribers ‧ 71 posts</p>
-                <p className={style.descr}>Chill Beat is a music channel about the Phonk Music genre.</p>
+                <p className={style.info}>@{publisher?.username} ‧ 98.4K subscribers ‧ 71 posts</p>
+                <p className={style.descr}>{publisher?.description}</p>
                 <button className={style.btn}>subscribe</button>
             </div>
             </Container>

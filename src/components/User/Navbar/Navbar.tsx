@@ -40,6 +40,7 @@ const customStyles = {
 
 const Navbar = () => {
   const publisherId = localStorage.getItem("publisher") ? JSON.parse(localStorage.getItem("publisher")).id : null
+  const userId = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).id : null
   const location = useLocation();
   const path = location.pathname;
 
@@ -190,7 +191,7 @@ const Navbar = () => {
                       }
                       {
                         localStorage.getItem("user") ? 
-                          <Link style={{textDecoration:'none', color:'black'}} to='user'>
+                          <Link style={{textDecoration:'none', color:'black'}} to={`/user/${userId}`}>
                             <ListItem disablePadding>
                               <ListItemButton>
                                 <ListItemIcon>
@@ -208,11 +209,11 @@ const Navbar = () => {
                             </ListItemIcon>
                             <ListItemText onClick={()=>{
                               if(localStorage.getItem("user")){
-                                dispatch(user_sign_out)
+                                dispatch(user_sign_out())
                                 Swal.fire("You have been signed out");
                               }
                               else if(localStorage.getItem("publisher")){
-                                dispatch(publisher_sign_out);
+                                dispatch(publisher_sign_out());
                                 Swal.fire("You have been signed out");
                               }
                               else{

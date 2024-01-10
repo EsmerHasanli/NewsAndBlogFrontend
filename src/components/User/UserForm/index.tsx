@@ -14,7 +14,7 @@ import UserSchema from "../../../validation/user.shema";
 const UserRegForm = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [users, setUsers] = React.useState([]);
-  const [formData, setFormData] = React.useState({ fullName: "", username: "", email: "", password: "", isAdmin: false, isVerified: false});
+  const [formData, setFormData] = React.useState({ fullName: "", username: "", profileImg:"https://i1.sndcdn.com/avatars-ZP5FpaishPSd1mGT-UCA3yw-t500x500.jpg", email: "", password: "", isAdmin: false, isVerified: false});
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -27,7 +27,7 @@ const UserRegForm = () => {
     try {
       const validatedData = UserSchema.parse(formData);
       await postUser(validatedData);
-      setFormData({ fullName: "", username: "", email: "", password: "", isAdmin: false, isVerified: false });
+      setFormData({ fullName: "", username: "", profileImg:"", email: "", password: "", isAdmin: false, isVerified: false });
       console.log("User registration successful", validatedData);
     } catch (error) {
       console.error("User registration error:", error);
